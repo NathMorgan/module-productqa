@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="question"
+           resource="default"
+           engine="innodb"
+           comment="Catalog Product Question">
+        <column xsi:type="int"
+                name="entity_id"
+                unsigned="true"
+                nullable="false"
+                identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int"
+                name="product_id"
+                unsigned="true"
+                nullable="false"
+                identity="false"
+                comment="Product Entity ID"/>
+        <column xsi:type="varchar"
+                name="customer_name"
+                nullable="false"
+                length="255"
+                default="simple"
+                comment="Customer Name"/>
+        <column xsi:type="varchar"
+                name="customer_email"
+                nullable="false"
+                length="255"
+                default="simple"
+                comment="Customer Email"/>
+        <column xsi:type="text"
+                name="question"
+                nullable="false"
+                comment="Customer Question"/>
+        <column xsi:type="text"
+                name="answer"
+                nullable="true"
+                comment="Store Answer"/>
+        <column xsi:type="timestamp"
+                name="created_at"
+                on_update="false"
+                nullable="false"
+                default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp"
+                name="updated_at"
+                on_update="true"
+                nullable="false"
+                default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <column xsi:type="smallint"
+                name="is_approved"
+                unsigned="false"
+                nullable="false"
+                identity="false"
+                default="0"
+                comment="Is Approved"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="QUESTION_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+</schema>

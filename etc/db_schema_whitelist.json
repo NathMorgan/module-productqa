@@ -1,0 +1,21 @@
+{
+    "question": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "customer_name": true,
+            "customer_email": true,
+            "question": true,
+            "answer": true,
+            "created_at": true,
+            "updated_at": true,
+            "is_approved": true
+        },
+        "index": {
+            "QUESTION_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
