@@ -1,0 +1,22 @@
+{
+    "name": "bright/module-productqa",
+    "description": "Magento 2 Product Q&A module",
+    "type": "magento2-module",
+    "config": {
+        "sort-packages": true
+    },
+    "authors": [{
+        "name": "Nathan Morgan",
+        "email": "nathan.morgan@tuqiri.net"
+    }],
+    "version": "1.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Bright\\ProductQA\\": ""
+        }
+    }
+}
+
