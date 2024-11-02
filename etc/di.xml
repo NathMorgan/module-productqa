@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bright\ProductQA\Api\QuestionRepositoryInterface" type="Bright\ProductQA\Model\QuestionRepository"/>
+    <preference for="Bright\ProductQA\Api\Data\QuestionInterface" type="Bright\ProductQA\Model\Question"/>
+    <preference for="Bright\ProductQA\Api\Data\QuestionSearchResultsInterface" type="Bright\ProductQA\Model\QuestionSearchResults"/>
+</config>
