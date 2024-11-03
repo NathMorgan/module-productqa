@@ -16,7 +16,7 @@ class DeleteById
     protected QuestionResourceModel $questionResourceModel;
 
     /** @var QuestionInterfaceFactory */
-    private QuestionInterfaceFactory $questionInterfaceFactory;
+    protected QuestionInterfaceFactory $questionInterfaceFactory;
 
     /**
      * @param QuestionResourceModel $questionResourceModel

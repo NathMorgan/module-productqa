@@ -15,15 +15,13 @@ use Psr\Log\LoggerInterface;
 class Save
 {
     /** @var QuestionResourceModel */
-    private $questionResourceModel;
+    protected $questionResourceModel;
 
     /** @var QuestionValidatorChain */
-    private $questionValidator;
+    protected $questionValidator;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    /** @var LoggerInterface */
+    protected $logger;
 
     /**
      * @param QuestionResourceModel $questionResourceModel
