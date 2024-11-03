@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/bright/question-items" method="GET">
+        <service class="Bright\ProductQA\Api\QuestionRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Bright_ProductQA::web_api_fetch"/>
+        </resources>
+    </route>
+    <route url="/V1/bright/question-items" method="POST">
+        <service class="Bright\ProductQA\Api\QuestionRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Bright_ProductQA::web_api_edit"/>
+        </resources>
+    </route>
+    <route url="/V1/bright/question-items" method="PUT">
+        <service class="Bright\ProductQA\Api\QuestionRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Bright_ProductQA::web_api_create"/>
+        </resources>
+    </route>
+    <route url="/V1/bright/question-delete" method="POST">
+        <service class="Bright\ProductQA\Api\QuestionRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Bright_ProductQA::web_api_delete"/>
+        </resources>
+    </route>
+</routes>
