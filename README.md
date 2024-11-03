@@ -13,6 +13,27 @@ on the product page in a form of an Q&A
 
 ## Testing
 
+## Future improvements
+
+* Supporting multiple store views to allow for the same product to have different QA messages depending on
+locale / region as the same product_id can be used on different stores. For now this can be dealt with translations on
+the output.
+
+## Explanations
+
+Researched on how Magento prefer module structures to be like with newer Magento versions
+
+* Seperated the Repository functions into `Command` folders to aid in readability and extendability.
+For example changing the webapi to only point to those files at a later date
+
+
+* Created validator chain for validating repository saves to also aid in readability and extendability
+custom rows could be added to the table and then extended via di.xml without having to use a plugin / preference
+
+
+* Seperated ACL permissions for both WebAPI and Admin pages so the store owner
+can set between allowing admin users to only use the admin page for example
+
 ## Installation
 
 1. Install via composer
