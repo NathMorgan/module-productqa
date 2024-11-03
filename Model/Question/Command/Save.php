@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bright\ProductQA\Model\Question\Command;
 
+use Bright\ProductQA\Model\QuestionValidatorChain;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Validation\ValidationException;
 use Bright\ProductQA\Model\ResourceModel\Question as QuestionResourceModel;
@@ -16,6 +17,9 @@ class Save
     /** @var QuestionResourceModel */
     private $questionResourceModel;
 
+    /** @var QuestionValidatorChain */
+    private $questionValidator;
+
     /**
      * @var LoggerInterface
      */
@@ -23,13 +27,16 @@ class Save
 
     /**
      * @param QuestionResourceModel $questionResourceModel
+     * @param QuestionValidatorChain $questionValidator
      * @param LoggerInterface $logger
      */
     public function __construct(
         QuestionResourceModel $questionResourceModel,
+        QuestionValidatorChain $questionValidator,
         LoggerInterface $logger
     ) {
         $this->questionResourceModel = $questionResourceModel;
+        $this->questionValidator = $questionValidator;
         $this->logger = $logger;
     }
 
@@ -43,10 +50,10 @@ class Save
      */
     public function execute(QuestionInterface $question): int
     {
-        /*$validationResult = $this->stockValidator->validate($stock);
+        $validationResult = $this->questionValidator->validate($question);
         if (!$validationResult->isValid()) {
             throw new ValidationException(__('Validation Failed'), null, 0, $validationResult);
-        }*/
+        }
 
         try {
             $this->questionResourceModel->save($question);
