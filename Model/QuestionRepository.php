@@ -39,9 +39,11 @@ class QuestionRepository implements QuestionRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save(\Bright\ProductQA\Api\Data\QuestionInterface $question): int
-    {
-        return $this->save->execute($question);
+    public function save(
+        \Bright\ProductQA\Api\Data\QuestionInterface $question,
+        bool $shouldNotifyEmail = false
+    ): int {
+        return $this->save->execute($question, $shouldNotifyEmail);
     }
 
     /**

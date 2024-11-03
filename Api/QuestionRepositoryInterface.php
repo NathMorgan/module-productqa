@@ -10,11 +10,14 @@ interface QuestionRepositoryInterface
      * Save question data
      *
      * @param \Bright\ProductQA\Api\Data\QuestionInterface $question
-     * @return \Bright\ProductQA\Api\Data\QuestionInterface
+     * @param bool $shouldNotifyEmail
+     * @return int
+     * @throws \Magento\Framework\Validation\ValidationException
      * @throws \Magento\Framework\Exception\CouldNotSaveException
      */
     public function save(
-        \Bright\ProductQA\Api\Data\QuestionInterface $question
+        \Bright\ProductQA\Api\Data\QuestionInterface $question,
+        bool $shouldNotifyEmail = false
     ): int;
 
     /**
