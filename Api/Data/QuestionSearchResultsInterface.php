@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bright\ProductQA\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;

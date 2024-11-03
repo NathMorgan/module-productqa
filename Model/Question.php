@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bright\ProductQA\Model;
 
 use Magento\Framework\Model\AbstractModel;
