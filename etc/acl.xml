@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Bright_ProductQA::top_level" title="Question Top Level" translate="title" sortOrder="10">
+                        <resource id="Bright_ProductQA::admin_page" title="Question Admin Pages" translate="title" sortOrder="10">
+                            <resource id="Bright_ProductQA::admin_page_view_list" title="Question Admin Page View List" translate="title" sortOrder="10" />
+                            <resource id="Bright_ProductQA::admin_page_delete" title="Question Admin Page Delete" translate="title" sortOrder="20" />
+                            <resource id="Bright_ProductQA::admin_page_edit" title="Question Admin Page Edit" translate="title" sortOrder="30" />
+                        </resource>
+                        <resource id="Bright_ProductQA::web_api" title="Question Web API" translate="title" sortOrder="20">
+                            <resource id="Bright_ProductQA::web_api_fetch" title="Fetch Questions" translate="title" sortOrder="10" />
+                            <resource id="Bright_ProductQA::web_api_create" title="Create Question" translate="title" sortOrder="20" />
+                            <resource id="Bright_ProductQA::web_api_edit" title="Edit Question" translate="title" sortOrder="30" />
+                            <resource id="Bright_ProductQA::web_api_delete" title="Delete Question" translate="title" sortOrder="40" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
