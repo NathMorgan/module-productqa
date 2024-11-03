@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bright_ProductQA::admin_page"
+             title="Bright"
+             module="Bright_ProductQA"
+             sortOrder="100"
+             resource="Magento_Backend::content"/>
+        <add id="Bright_ProductQA::admin_page_view_list"
+             title="Product QA"
+             module="Bright_ProductQA"
+             sortOrder="1"
+             resource="Magento_Backend::content"
+             parent="Bright_ProductQA::admin_page"
+             action="bright_productqa/question/index"/>
+    </menu>
+</config>

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route frontName="bright_productqa" id="bright_productqa">
+            <module before="Magento_Backend" name="Bright_ProductQA"/>
+        </route>
+    </router>
+</config>
