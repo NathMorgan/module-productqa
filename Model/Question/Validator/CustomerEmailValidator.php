@@ -23,6 +23,7 @@ class CustomerEmailValidator implements QuestionValidatorInterface
 
     /**
      * @param ValidationResultFactory $validationResultFactory
+     * @param EmailAddressValidator $emailAddressValidator
      */
     public function __construct(
         ValidationResultFactory $validationResultFactory,

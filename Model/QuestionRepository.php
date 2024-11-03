@@ -8,8 +8,9 @@ use Bright\ProductQA\Model\Question\Command\DeleteById;
 use Bright\ProductQA\Model\Question\Command\Get;
 use Bright\ProductQA\Model\Question\Command\GetList;
 use Bright\ProductQA\Model\Question\Command\Save;
+use Bright\ProductQA\Api\QuestionRepositoryInterface;
 
-class QuestionRepository implements \Bright\ProductQA\Api\QuestionRepositoryInterface
+class QuestionRepository implements QuestionRepositoryInterface
 {
     /** @var DeleteById */
     protected DeleteById $deleteById;

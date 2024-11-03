@@ -19,7 +19,7 @@ class QuestionValidatorChain implements QuestionValidatorInterface
 
     /**
      * @param ValidationResultFactory $validationResultFactory
-     * @param StockValidatorInterface[] $validators
+     * @param QuestionValidatorInterface[] $validators
      * @throws LocalizedException
      */
     public function __construct(

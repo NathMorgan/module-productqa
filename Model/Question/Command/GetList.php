@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Bright\ProductQA\Model\Question\Command;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
-use Bright\ProductQA\Api\Data\QuestionInterfaceFactory;
 use Bright\ProductQA\Api\Data\QuestionSearchResultsInterface;
 use Bright\ProductQA\Api\Data\QuestionSearchResultsInterfaceFactory;
 use Bright\ProductQA\Model\ResourceModel\Question\Collection as QuestionCollection;
