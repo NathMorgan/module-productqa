@@ -21,7 +21,7 @@ the output.
 
 ## Explanations
 
-Researched on how Magento prefer module structures to be like with newer Magento versions
+Researched preferred module structures as per official Magento guidance.
 
 * Seperated the Repository functions into `Command` folders to aid in readability and extendability.
 For example changing the webapi to only point to those files at a later date
