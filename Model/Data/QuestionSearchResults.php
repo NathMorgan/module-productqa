@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Bright\ProductQA\Model;
+namespace Bright\ProductQA\Model\Data;
 
-use Magento\Framework\Api\SearchResults;
 use Bright\ProductQA\Api\Data\QuestionSearchResultsInterface;
+use Magento\Framework\Api\SearchResults;
 
 class QuestionSearchResults extends SearchResults implements QuestionSearchResultsInterface
 {
