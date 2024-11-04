@@ -2,8 +2,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Bright\ProductQA\Api\QuestionRepositoryInterface" type="Bright\ProductQA\Model\QuestionRepository"/>
+    <preference for="Bright\ProductQA\Api\QuestionManagementInterface" type="Bright\ProductQA\Model\QuestionManagement"/>
     <preference for="Bright\ProductQA\Api\Data\QuestionInterface" type="Bright\ProductQA\Model\Question"/>
     <preference for="Bright\ProductQA\Api\Data\QuestionSearchResultsInterface" type="Bright\ProductQA\Model\Data\QuestionSearchResults"/>
+    <preference for="Bright\ProductQA\Api\Data\QuestionMessageInterface" type="Bright\ProductQA\Model\Data\QuestionMessage"/>
 
     <!-- Question Validations -->
     <type name="Bright\ProductQA\Model\QuestionValidatorChain">
