@@ -19,6 +19,7 @@
         </arguments>
     </type>
 
+    <!-- Grid Collection -->
     <virtualType name="Bright\ProductQA\Model\ResourceModel\Question\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
@@ -42,4 +43,13 @@
             <argument name="sortOrder" xsi:type="number">20</argument>
         </arguments>
     </virtualType>
+
+    <!-- WebAPI ReCaptcha -->
+    <type name="Magento\ReCaptchaWebapiApi\Model\CompositeWebapiValidationConfigProvider">
+        <arguments>
+            <argument name="providers" xsi:type="array">
+                <item name="bright_product_qa" xsi:type="object">Bright\ProductQA\Model\ReCaptcha\WebapiConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

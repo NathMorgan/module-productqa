@@ -9,6 +9,8 @@ use Bright\ProductQA\Api\Data\QuestionInterface;
 
 class Question extends AbstractModel implements QuestionInterface
 {
+    const PRODUCT_QA_CAPTCHA_ID = 'bright_product_qa';
+
     protected function _construct()
     {
         $this->_init(ResourceModel\Question::class);
