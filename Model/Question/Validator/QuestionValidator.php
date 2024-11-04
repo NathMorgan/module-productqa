@@ -35,7 +35,7 @@ class QuestionValidator implements QuestionValidatorInterface
         $value = (string) $question->getQuestion();
 
         if (!$value) {
-            $errors[] = __('"%field" can not be empty.', ['field' => QuestionInterface::KEY_QUESTION]);
+            $errors[] = __('Question is a required field.');
         }
 
         return $this->validationResultFactory->create(['errors' => $errors]);

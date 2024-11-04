@@ -42,11 +42,11 @@ class CustomerEmailValidator implements QuestionValidatorInterface
         $value = (string) $question->getCustomerEmail();
 
         if (trim($value) === '') {
-            $errors[] = __('"%field" can not be empty.', ['field' => QuestionInterface::KEY_CUSTOMER_EMAIL]);
+            $errors[] = __('Email is a required field.');
         }
 
         if (!$this->emailAddressValidator->isValid($question->getCustomerEmail())) {
-            $errors[] = __('"%field" is not a valid email address.', ['field' => QuestionInterface::KEY_CUSTOMER_EMAIL]);
+            $errors[] = __('Provided email is not a valid email address.');
         }
 
         return $this->validationResultFactory->create(['errors' => $errors]);

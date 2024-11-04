@@ -35,7 +35,7 @@ class ProductIdValidator implements QuestionValidatorInterface
         $value = (int) $question->getProductId();
 
         if (!$value) {
-            $errors[] = __('"%field" can not be empty.', ['field' => QuestionInterface::KEY_PRODUCT_ID]);
+            $errors[] = __('Product ID is a required field.');
         }
 
         return $this->validationResultFactory->create(['errors' => $errors]);

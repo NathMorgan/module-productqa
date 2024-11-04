@@ -35,7 +35,7 @@ class CustomerNameValidator implements QuestionValidatorInterface
         $value = (string) $question->getCustomerName();
 
         if (trim($value) === '') {
-            $errors[] = __('"%field" can not be empty.', ['field' => QuestionInterface::KEY_CUSTOMER_NAME]);
+            $errors[] = __('Customer name is a required field.');
         }
 
         return $this->validationResultFactory->create(['errors' => $errors]);
