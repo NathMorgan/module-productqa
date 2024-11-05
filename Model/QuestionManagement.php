@@ -10,6 +10,7 @@ use Bright\ProductQA\Api\QuestionManagementInterface;
 use Bright\ProductQA\Api\QuestionRepositoryInterface;
 use Bright\ProductQA\Api\Data\QuestionMessageInterface;
 use Bright\ProductQA\Api\Data\QuestionMessageInterfaceFactory;
+use Magento\Framework\Validation\ValidationException;
 
 class QuestionManagement implements QuestionManagementInterface
 {
@@ -57,7 +58,19 @@ class QuestionManagement implements QuestionManagementInterface
             // Prevent this from being an update
             $question->setEntityId(null);
             $this->questionRepository->save($question);
-        } catch (\Exception $e) {
+        } catch (ValidationException $e) {
+            $validationExceptions = $e->getErrors();
+            $validationErrorMessages = [];
+
+            foreach ($validationExceptions as $validationException) {
+                $validationErrorMessages[] = $validationException->getMessage();
+            }
+
+            $questionMessage->setSuccess(false);
+            $questionMessage->setMessage(__(implode("\n", $validationErrorMessages)));
+
+            return $questionMessage;
+        } catch(\Exception $e) {
             $questionMessage->setSuccess(false);
             $questionMessage->setMessage(__($e->getMessage()));
 
