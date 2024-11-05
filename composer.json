@@ -9,7 +9,7 @@
         "name": "Nathan Morgan",
         "email": "nathan.morgan@tuqiri.net"
     }],
-    "version": "1.0",
+    "version": "1.0.2",
     "autoload": {
         "files": [
             "registration.php"
