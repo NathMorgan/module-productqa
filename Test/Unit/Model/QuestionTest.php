@@ -4,35 +4,17 @@ declare(strict_types=1);
 
 namespace Bright\ProductQA\Test\Unit\Model;
 
-use Bright\ProductQA\Api\Data\QuestionInterfaceFactory;
-use Bright\ProductQA\Model\ResourceModel\Question as QuestionResource;
 use Bright\ProductQA\Model\Question as QuestionModel;
-use Magento\Framework\Registry;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
-use Magento\Framework\Api\DataObjectHelper;
 use Bright\ProductQA\Api\Data\QuestionInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class QuestionTest extends TestCase
 {
-    /** @var QuestionModel|MockObject */
-    private $questionModel;
 
     /** @var QuestionInterface|MockObject */
     private $question;
-
-    /** @var Registry|MockObject */
-    private $registryMock;
-
-    /** @var QuestionResource|MockObject */
-    private $resourceMock;
-
-    /** @var DataObjectHelper|MockObject */
-    private $dataObjectHelper;
-
-    /** @var QuestionInterfaceFactory|MockObject */
-    private $questionInterfaceFactory;
 
     /**
      * Setup function for creating mock classes
@@ -41,61 +23,132 @@ class QuestionTest extends TestCase
      */
     public function setUp(): void
     {
-        $this->questionInterfaceFactory = $this->getMockBuilder(QuestionInterfaceFactory::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['create'])
-            ->getMock();
-
-        $this->question = $this->getMockBuilder(
-            Question::class
-        )->getMock();
-
-        $this->resourceMock = $this->createPartialMock(
-            QuestionResource::class,
-            ['getIdFieldName']
-        );
-
-        $this->resourceMock->expects($this->any())
-            ->method('getIdFieldName')
-            ->willReturn('id');
-
-        $this->registryMock = $this->createPartialMock(Registry::class, ['registry']);
-        $this->dataObjectHelper = $this->getMockBuilder(DataObjectHelper::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['populateWithArray'])
-            ->getMock();
-
-        $this->questionModel = (new ObjectManager($this))->getObject(
-            QuestionModel::class,
-            [
-                'registry' => $this->registryMock,
-                'questionInterfaceFactory' => $this->questionInterfaceFactory,
-                'dataObjectHelper' => $this->dataObjectHelper,
-                'resource' => $this->resourceMock,
-            ]
-        );
+        $this->question = (new ObjectManager($this))->getObject(QuestionModel::class);
     }
 
-    public function testGetDataModel()
+    public function testGetId()
     {
-        $entityId = 1;
+        $testId = 1;
+        $this->question->setId($testId);
+        $this->assertEquals($testId, $this->question->getId());
+    }
 
-        $this->questionModel->setEntityId($entityId);
-        $this->questionModel->setId($entityId);
+    public function testSetId()
+    {
+        $testId = 1;
+        $question = $this->question->setId($testId);
+        $this->assertEquals($question, $this->question);
+    }
 
-        $questionDataObject = $this->getMockForAbstractClass(QuestionInterface::class);
+    public function testGetProductId()
+    {
+        $testProductId = 1;
+        $this->question->setProductId($testProductId);
+        $this->assertEquals($testProductId, $this->question->getProductId());
+    }
 
-        $this->questionInterfaceFactory
-            ->expects($this->atLeastOnce())
-            ->method('create')
-            ->willReturn($questionDataObject);
+    public function testSetProductId()
+    {
+        $testProductId = 1;
+        $question = $this->question->setProductId($testProductId);
+        $this->assertEquals($question, $this->question);
+    }
 
-        $this->dataObjectHelper
-            ->expects($this->atLeastOnce())
-            ->method('populateWithArray')
-            ->with($questionDataObject, $this->questionModel->getData(), QuestionInterface::class)
-            ->willReturnSelf();
+    public function testGetCustomerName()
+    {
+        $testCustomerName = 'Test Name';
+        $this->question->setCustomerName($testCustomerName);
+        $this->assertEquals($testCustomerName, $this->question->getCustomerName());
+    }
 
-        $this->questionModel->getDataModel();
+    public function testSetCustomerName()
+    {
+        $testCustomerName = 'Test Name';
+        $question = $this->question->setCustomerName($testCustomerName);
+        $this->assertEquals($question, $this->question);
+    }
+
+    public function testGetCustomerEmail()
+    {
+        $testCustomerEmail = 'Test Email';
+        $this->question->setCustomerEmail($testCustomerEmail);
+        $this->assertEquals($testCustomerEmail, $this->question->getCustomerEmail());
+    }
+
+    public function testSetCustomerEmail()
+    {
+        $testCustomerEmail = 'Test Email';
+        $question = $this->question->setCustomerEmail($testCustomerEmail);
+        $this->assertEquals($question, $this->question);
+    }
+
+    public function testGetQuestion()
+    {
+        $testQuestion = 'Test Question';
+        $this->question->setQuestion($testQuestion);
+        $this->assertEquals($testQuestion, $this->question->getQuestion());
+    }
+
+    public function testSetQuestion()
+    {
+        $testQuestion = 'Test Question';
+        $question = $this->question->setQuestion($testQuestion);
+        $this->assertEquals($question, $this->question);
+    }
+
+    public function testGetAnswer()
+    {
+        $testAnswer = 'Test Answer';
+        $this->question->setAnswer($testAnswer);
+        $this->assertEquals($testAnswer, $this->question->getAnswer());
+    }
+
+    public function testSetAnswer()
+    {
+        $testAnswer = 'Test Answer';
+        $question = $this->question->setAnswer($testAnswer);
+        $this->assertEquals($question, $this->question);
+    }
+
+    public function testGetCreatedAt()
+    {
+        $testCreatedAt = 'Test Created At';
+        $this->question->setCreatedAt($testCreatedAt);
+        $this->assertEquals($testCreatedAt, $this->question->getCreatedAt());
+    }
+
+    public function testSetCreatedAt()
+    {
+        $testCreatedAt = 'Test Created At';
+        $question = $this->question->setCreatedAt($testCreatedAt);
+        $this->assertEquals($question, $this->question);
+    }
+
+    public function testGetUpdatedAt()
+    {
+        $testUpdatedAt = 'Test Updated At';
+        $this->question->setUpdatedAt($testUpdatedAt);
+        $this->assertEquals($testUpdatedAt, $this->question->getUpdatedAt());
+    }
+
+    public function testSetUpdatedAt()
+    {
+        $testUpdatedAt = 'Test Updated At';
+        $question = $this->question->setUpdatedAt($testUpdatedAt);
+        $this->assertEquals($question, $this->question);
+    }
+
+    public function testGetIsApproved()
+    {
+        $testIsApproved = true;
+        $this->question->setIsApproved($testIsApproved);
+        $this->assertEquals($testIsApproved, $this->question->getIsApproved());
+    }
+
+    public function testSetIsApproved()
+    {
+        $testIsApproved = true;
+        $question = $this->question->setIsApproved($testIsApproved);
+        $this->assertEquals($question, $this->question);
     }
 }
