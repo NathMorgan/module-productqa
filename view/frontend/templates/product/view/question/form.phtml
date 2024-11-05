@@ -6,87 +6,112 @@ use Magento\Framework\Escaper;
 use Magento\Catalog\Block\Product\View as ProductView;
 use Bright\ProductQA\ViewModel\Product\View\QuestionViewModel;
 use Bright\ProductQA\Model\Question;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
 
 /** @var ProductView $block */
 /** @var Escaper $escaper */
 /** @var ViewModelRegistry $viewModels */
 /** @var QuestionViewModel $questionViewModel */
 /** @var ReCaptcha $recaptchaViewModel */
+/** @var HeroiconsOutline $heroiconsViewModel */
 
 $product = $block->getProduct();
+$heroiconsViewModel = $viewModels->require(HeroiconsOutline::class);
 $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
 ?>
-<div class="mx-auto py-6 items-center" id="review-form" tabindex="-1">
+<div x-data="{openQuestionForm: false}" class="mx-auto py-6 items-center" id="review-form" tabindex="-1">
     <div class="card w-full px-6 py-3">
-        <div class="text-xl my-3">
-            <?= $escaper->escapeHtml(__('Submit a Question')) ?>
-        </div>
-        <form @submit.prevent="submitForm();"
-              method="post"
-              class="question-form"
-              id="question-form">
-            <input type="hidden" id="product_id" name="product_id" value="<?= $escaper->escapeHtmlAttr($product->getId())?>" />
-            <fieldset>
-                <div>
-                    <div class="flex flex-col sm:flex-row">
-                        <div class="flex-1">
-                            <label for="customer_name_field" class="sr-only">
-                                <span><?= $escaper->escapeHtml(__('Nickname')) ?></span>
-                            </label>
-                            <div>
-                                <input class="form-input mt-3 block w-full text-sm"
-                                       required
-                                       placeholder="<?= $escaper->escapeHtmlAttr(__('Nickname') . '*') ?>"
-                                       type="text"
-                                       name="customer_name"
-                                       id="customer_name_field"/>
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            <label for="customer_email_field" class="sr-only">
-                                <span><?= $escaper->escapeHtml(__('Email')) ?></span>
-                            </label>
-                            <div>
-                                <input class="form-input mt-3 block w-full text-sm"
-                                       required
-                                       placeholder="<?= $escaper->escapeHtml(__('Email') . '*') ?>"
-                                       type="email"
-                                       name="customer_email"
-                                       id="customer_email_field"/>
-                            </div>
-                        </div>
-                    </div>
+        <button
+            type="button"
+            @click="openQuestionForm = !openQuestionForm"
+            class="filter-options-title flex justify-between items-center cursor-pointer text-start hover:text-secondary-darker border-container w-full"
+            :class="{ 'border-b pb-4': openQuestionForm }"
+            :aria-expanded="openQuestionForm"
+        >
+            <span class="text-xl my-3">
+                <?= $escaper->escapeHtml(__('Submit a Question')) ?>
+            </span>
+            <span class="py-1 px-1 rounded border border-container">
+                <?= $heroiconsViewModel->chevronDownHtml(
+                    'transition-transform transform duration-300 ease-in-out',
+                    24,
+                    24,
+                    [
+                        ":class" => "{ 'rotate-180': openQuestionForm }",
+                        "aria-hidden" => "true",
+                        "focusable" => "false"
+                    ]
+                ); ?>
+            </span>
+        </button>
+        <template x-if="openQuestionForm">
+            <form @submit.prevent="submitForm();"
+                  method="post"
+                  class="question-form"
+                  id="question-form">
+                <input type="hidden" id="product_id" name="product_id" value="<?= $escaper->escapeHtmlAttr($product->getId())?>" />
+                <fieldset>
                     <div>
-                        <label for="qustion_field" class="sr-only">
-                            <span><?= $escaper->escapeHtml(__('Qustion')) ?></span>
-                        </label>
+                        <div class="flex flex-col sm:flex-row">
+                            <div class="flex-1">
+                                <label for="customer_name_field" class="sr-only">
+                                    <span><?= $escaper->escapeHtml(__('Nickname')) ?></span>
+                                </label>
+                                <div>
+                                    <input class="form-input mt-3 block w-full text-sm"
+                                           required
+                                           placeholder="<?= $escaper->escapeHtmlAttr(__('Nickname') . '*') ?>"
+                                           type="text"
+                                           name="customer_name"
+                                           id="customer_name_field"/>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <label for="customer_email_field" class="sr-only">
+                                    <span><?= $escaper->escapeHtml(__('Email')) ?></span>
+                                </label>
+                                <div>
+                                    <input class="form-input mt-3 block w-full text-sm"
+                                           required
+                                           placeholder="<?= $escaper->escapeHtml(__('Email') . '*') ?>"
+                                           type="email"
+                                           name="customer_email"
+                                           id="customer_email_field"/>
+                                </div>
+                            </div>
+                        </div>
                         <div>
-                            <input class="form-input mt-3 block w-full text-sm"
-                                   required
-                                   placeholder="<?= $escaper->escapeHtml(__('Question') . '*') ?>"
-                                   type="text"
-                                   name="question"
-                                   id="qustion_field"/>
+                            <label for="qustion_field" class="sr-only">
+                                <span><?= $escaper->escapeHtml(__('Qustion')) ?></span>
+                            </label>
+                            <div>
+                                <input class="form-input mt-3 block w-full text-sm"
+                                       required
+                                       placeholder="<?= $escaper->escapeHtml(__('Question') . '*') ?>"
+                                       type="text"
+                                       name="question"
+                                       id="qustion_field"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </fieldset>
+                </fieldset>
 
-            <?php /** ReCaptcha blocks for each supported version */ ?>
-            <?= /** @noEscape */ $recaptchaViewModel->getInputHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
+                <?php /** ReCaptcha blocks for each supported version */ ?>
+                <?= /** @noEscape */ $recaptchaViewModel->getInputHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
 
-            <div class="w-full grecaptcha-legal">
-                <?= /** @noEscape */ $recaptchaViewModel->getLegalNoticeHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
-            </div>
-            <div class="my-3">
-                <div>
-                    <button type="submit" class="btn btn-primary">
-                        <span>
-                            <?= $escaper->escapeHtml(__('Submit Question')) ?>
-                        </span>
-                    </button>
+                <div class="w-full grecaptcha-legal">
+                    <?= /** @noEscape */ $recaptchaViewModel->getLegalNoticeHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
                 </div>
-            </div>
-        </form>
+                <div class="my-3">
+                    <div>
+                        <button type="submit" class="btn btn-primary">
+                            <span>
+                                <?= $escaper->escapeHtml(__('Submit Question')) ?>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </template>
     </div>
 </div>
