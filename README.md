@@ -1,5 +1,7 @@
 # Bright_ProductQA
 
+![M2 Coding Standard](https://github.com/NathMorgan/module-productqa/actions/workflows/coding-standard.yml/badge.svg)
+
 Bright_ProductQA is a module that allows customers to submit product question requests
 that can be viewed and answered by the store owner. The questions once approved and answered will appear
 on the product page in a form of an Q&A
