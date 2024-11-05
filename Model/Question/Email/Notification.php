@@ -68,10 +68,10 @@ class Notification
                 )
                 ->setTemplateVars([])
                 ->setFromByScope(
-                    $this->scopeConfig->getSenderEmail()
+                    $this->scopeConfig->getAdminNotificationEmail()
                 )
                 ->addTo(
-                    $this->scopeConfig->getRequestEmail()
+                    $this->scopeConfig->getAdminNotificationEmail()
                 )
                 ->getTransport();
 
