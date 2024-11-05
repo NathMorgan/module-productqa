@@ -19,6 +19,19 @@ on the product page in a form of an Q&A
 locale / region as the same product_id can be used on different stores. For now this can be dealt with translations on
 the output.
 
+ 
+* Supporting GraphQL for fetching / saving Question to allow for a headless Magento support
+
+
+* Allowing the use of customer names in the Q/A section on the frontend. It was left blank due to the requirements not
+stating to need it and due to possible GDPR issues.
+
+
+* Removing the need to use Product Block class in the layout file. Using this is very heavy for only needing the ProductID
+
+
+* Remove the use of collection for the frontend however collections was used to keep the functionality of Magento pager support~~~~~~~~
+
 ## Explanations
 
 Researched preferred module structures as per official Magento guidance.
@@ -33,6 +46,16 @@ custom rows could be added to the table and then extended via di.xml without hav
 
 * Seperated ACL permissions for both WebAPI and Admin pages so the store owner
 can set between allowing admin users to only use the admin page for example
+
+
+* Store config for setting a custom admin contact email for module functionality
+
+
+* Seperated the script tag to be in its own `script-main.phtml` file this keeps the frontend JS functionality seperated and
+aids readability
+
+
+* Added tabbing support though the question list on the product page to allow for accessibility requirements
 
 ## Installation
 
