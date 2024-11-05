@@ -30,8 +30,8 @@ class GetList
         CollectionProcessorInterface $collectionProcessor,
         QuestionCollectionFactory $questionCollectionFactory,
         QuestionSearchResultsInterfaceFactory $questionSearchResultsFactory,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-    ){
+        SearchCriteriaBuilder $searchCriteriaBuilder
+    ) {
         $this->collectionProcessor = $collectionProcessor;
         $this->questionCollectionFactory = $questionCollectionFactory;
         $this->questionSearchResultsFactory = $questionSearchResultsFactory;

@@ -24,7 +24,7 @@ class Get
     public function __construct(
         QuestionResourceModel $questionResourceModel,
         QuestionInterfaceFactory $questionInterfaceFactory
-    ){
+    ) {
         $this->questionResourceModel = $questionResourceModel;
         $this->questionInterfaceFactory = $questionInterfaceFactory;
     }
