@@ -24,7 +24,8 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
         <button
             type="button"
             @click="openQuestionForm = !openQuestionForm"
-            class="filter-options-title flex justify-between items-center cursor-pointer text-start hover:text-secondary-darker border-container w-full"
+            class="filter-options-title flex justify-between items-center cursor-pointer text-start
+                hover:text-secondary-darker border-container w-full"
             :class="{ 'border-b pb-4': openQuestionForm }"
             :aria-expanded="openQuestionForm"
         >
@@ -49,7 +50,10 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
                   method="post"
                   class="question-form"
                   id="question-form">
-                <input type="hidden" id="product_id" name="product_id" value="<?= $escaper->escapeHtmlAttr($product->getId())?>" />
+                <input type="hidden"
+                       id="product_id"
+                       name="product_id"
+                       value="<?= $escaper->escapeHtmlAttr($product->getId())?>" />
                 <fieldset>
                     <div>
                         <div class="flex flex-col sm:flex-row gap-2">
