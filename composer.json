@@ -17,6 +17,9 @@
         "psr-4": {
             "Bright\\ProductQA\\": ""
         }
+    },
+    "require-dev": {
+        "magento/magento-coding-standard": "*"
     }
 }
 
