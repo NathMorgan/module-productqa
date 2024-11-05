@@ -20,4 +20,16 @@ class Collection extends AbstractCollection
             ResourceQuestion::class
         );
     }
+
+    /**
+     * Add is approved question filter
+     *
+     * @return $this
+     */
+    public function addIsApprovedFilter(): static
+    {
+        $this->addFilter('is_approved', 1);
+
+        return $this;
+    }
 }

@@ -33,7 +33,7 @@ class QuestionViewModel implements ArgumentInterface
         if ($this->questionsCollection === null) {
             $this->questionsCollection = $this->questionCollectionFactory->create();
 
-            $this->questionsCollection->addFilter(
+            $this->questionsCollection->addIsApprovedFilter()->addFilter(
                 'product_id',
                 $productId
             );
