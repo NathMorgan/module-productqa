@@ -21,7 +21,7 @@ class ProductIdValidator implements QuestionValidatorInterface
      * @param ValidationResultFactory $validationResultFactory
      */
     public function __construct(
-        ValidationResultFactory $validationResultFactory,
+        ValidationResultFactory $validationResultFactory
     ) {
         $this->validationResultFactory = $validationResultFactory;
     }

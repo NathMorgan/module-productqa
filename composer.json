@@ -3,13 +3,16 @@
     "description": "Magento 2 Product Q&A module",
     "type": "magento2-module",
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "authors": [{
         "name": "Nathan Morgan",
         "email": "nathan.morgan@tuqiri.net"
     }],
-    "version": "1.0.2",
+    "version": "1.1.0",
     "autoload": {
         "files": [
             "registration.php"
@@ -17,6 +20,9 @@
         "psr-4": {
             "Bright\\ProductQA\\": ""
         }
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7 || ^1.0"
     }
 }
 

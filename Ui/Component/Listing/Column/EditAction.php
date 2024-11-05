@@ -29,7 +29,7 @@ class EditAction extends BaseEditAction
         UrlInterface $urlBuilder,
         AuthorizationInterface $authorization,
         array $components = [],
-        array $data = [],
+        array $data = []
     ) {
         parent::__construct($context, $uiComponentFactory, $urlBuilder, $components, $data);
 

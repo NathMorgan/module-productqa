@@ -15,7 +15,7 @@ use Magento\Framework\Validation\ValidationException;
 class QuestionManagement implements QuestionManagementInterface
 {
     /** @var FormKey  */
-    protected FormKey $formKey;
+    protected $formKey;
 
     /** @var QuestionRepositoryInterface */
     protected $questionRepository;
@@ -31,7 +31,7 @@ class QuestionManagement implements QuestionManagementInterface
     public function __construct(
         FormKey $formKey,
         QuestionRepositoryInterface $questionRepository,
-        QuestionMessageInterfaceFactory $questionMessageFactory,
+        QuestionMessageInterfaceFactory $questionMessageFactory
     ) {
         $this->formKey = $formKey;
         $this->questionRepository = $questionRepository;
@@ -57,7 +57,7 @@ class QuestionManagement implements QuestionManagementInterface
         try {
             // Prevent this from being an update
             $question->setEntityId(null);
-            $this->questionRepository->save($question);
+            $this->questionRepository->save($question, true);
         } catch (ValidationException $e) {
             $validationExceptions = $e->getErrors();
             $validationErrorMessages = [];
@@ -70,7 +70,7 @@ class QuestionManagement implements QuestionManagementInterface
             $questionMessage->setMessage(__(implode("\n", $validationErrorMessages)));
 
             return $questionMessage;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $questionMessage->setSuccess(false);
             $questionMessage->setMessage(__($e->getMessage()));
 

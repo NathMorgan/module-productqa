@@ -8,7 +8,7 @@ use Bright\ProductQA\Model\ResourceModel\Question\CollectionFactory as QuestionC
 
 class QuestionViewModel implements ArgumentInterface
 {
-    protected QuestionCollectionFactory $questionCollectionFactory;
+    protected $questionCollectionFactory;
 
     /** @var QuestionCollection */
     protected $questionsCollection;
@@ -17,7 +17,7 @@ class QuestionViewModel implements ArgumentInterface
      * @param QuestionCollectionFactory $questionCollectionFactory
      */
     public function __construct(
-        QuestionCollectionFactory $questionCollectionFactory,
+        QuestionCollectionFactory $questionCollectionFactory
     ) {
         $this->questionCollectionFactory = $questionCollectionFactory;
     }

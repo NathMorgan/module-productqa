@@ -26,7 +26,7 @@ class Collection extends AbstractCollection
      *
      * @return $this
      */
-    public function addIsApprovedFilter(): static
+    public function addIsApprovedFilter()
     {
         $this->addFilter('is_approved', 1);
 

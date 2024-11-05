@@ -7,5 +7,5 @@
               file="productqa_notification.html"
               type="html"
               module="Bright_ProductQA"
-              area="frontend"/>
+              area="adminhtml"/>
 </config>

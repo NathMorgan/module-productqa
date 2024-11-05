@@ -76,7 +76,9 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
                     question = document.getElementById('qustion_field').value,
                     productId = document.getElementById('product_id').value;
 
-                const fieldName = '<?= $escaper->escapeJs($recaptchaViewModel->getResultTokenFieldName('#question-form')) ?>';
+                const fieldName = '<?= $escaper->escapeJs(
+                    $recaptchaViewModel->getResultTokenFieldName('#question-form')
+                ) ?>';
                 const recaptchaHeader = fieldName && form && form.elements[fieldName]
                     ? {'X-ReCaptcha': form.elements[fieldName].value}
                     : {};
