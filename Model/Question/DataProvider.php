@@ -19,9 +19,9 @@ class DataProvider extends AbstractDataProvider
     protected $loadedData;
 
     /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param QuestionCollectionFactory $questionCollectionFactory
      * @param array $meta
      * @param array $data
