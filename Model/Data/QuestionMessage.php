@@ -10,7 +10,7 @@ use Bright\ProductQA\Api\Data\QuestionMessageInterface;
 class QuestionMessage implements QuestionMessageInterface
 {
     /** @var Phrase */
-    private Phrase $message;
+    private $message;
 
     /** @var bool */
     private bool $success;
