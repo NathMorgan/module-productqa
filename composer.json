@@ -3,7 +3,10 @@
     "description": "Magento 2 Product Q&A module",
     "type": "magento2-module",
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "authors": [{
         "name": "Nathan Morgan",
@@ -19,7 +22,7 @@
         }
     },
     "require-dev": {
-        "magento/magento-coding-standard": "*"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7 || ^1.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -29,5 +32,5 @@
             "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/)"
         ]
     }
-},
+}
 
