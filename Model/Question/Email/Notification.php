@@ -8,6 +8,7 @@ use Magento\Framework\App\Area;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Store\Model\StoreManagerInterface;
 use Bright\ProductQA\Scope\Config as ScopeConfig;
+use Psr\Log\LoggerInterface;
 
 class Notification
 {
@@ -23,22 +24,28 @@ class Notification
     /** @var StoreManagerInterface */
     protected $storeManager;
 
+    /** @var LoggerInterface */
+    protected $logger;
+
     /**
      * @param ScopeConfig $scopeConfig
      * @param BackendUrlInterface $backendUrl
      * @param TransportBuilder $transportBuilder
      * @param StoreManagerInterface $storeManager
+     * @param LoggerInterface $logger
      */
     public function __construct(
         ScopeConfig $scopeConfig,
         BackendUrlInterface $backendUrl,
         TransportBuilder $transportBuilder,
         StoreManagerInterface $storeManager,
+        LoggerInterface $logger,
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->backendUrl = $backendUrl;
         $this->transportBuilder = $transportBuilder;
         $this->storeManager = $storeManager;
+        $this->logger = $logger;
     }
 
     /**
@@ -71,7 +78,7 @@ class Notification
 
             $transport->sendMessage();
         } catch (\Exception $e) {
-            var_dump($e->getMessage());die;
+            $this->logger->debug($e->getMessage());
         }
     }
 }
