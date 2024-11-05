@@ -20,10 +20,40 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
     function initQuestion() {
         return {
             isLoading: false,
+            errors: 0,
 
+            /**
+             * Validate form submit.
+             * This should be mostly handled by the browser on field inputs but this is here just if that fails
+             */
+            validate: function () {
+                const customerName = document.getElementById('customer_name_field').value,
+                    customerEmail = document.getElementById('customer_email_field').value,
+                    question = document.getElementById('qustion_field').value,
+                    productId = document.getElementById('product_id').value;
+
+                if (!(customerName &&
+                    customerEmail &&
+                    question &&
+                    productId
+                )) {
+                    dispatchMessages([{
+                        text: '<?= $escaper->escapeJs(__('Please verify you\'ve entered all required information')) ?>',
+                        type: 'error'
+                    }]);
+
+                    this.errors = 1;
+                }
+            },
+
+            /**
+             * Submit button click
+             */
             submitForm: function () {
                 // Do not rename $form, the variable is expected to be declared in the recaptcha output
                 const $form = document.querySelector('#question-form');
+
+                this.validate();
 
                 <?= /** @noEscape */ $recaptchaViewModel->getValidationJsHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
 
@@ -32,6 +62,11 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
                 }
             },
 
+            /**
+             * Dispatch sending form data to be saved
+             *
+             * @param form
+             */
             dispatchCreateQuestion(form) {
                 this.isLoading = true;
 
