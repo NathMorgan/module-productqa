@@ -28,7 +28,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         DeleteById $deleteById,
         Get $get,
         GetList $getList,
-        Save $save,
+        Save $save
     ) {
         $this->deleteById = $deleteById;
         $this->get = $get;

@@ -17,7 +17,7 @@ class QuestionViewModel implements ArgumentInterface
      * @param QuestionCollectionFactory $questionCollectionFactory
      */
     public function __construct(
-        QuestionCollectionFactory $questionCollectionFactory,
+        QuestionCollectionFactory $questionCollectionFactory
     ) {
         $this->questionCollectionFactory = $questionCollectionFactory;
     }

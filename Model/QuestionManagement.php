@@ -31,7 +31,7 @@ class QuestionManagement implements QuestionManagementInterface
     public function __construct(
         FormKey $formKey,
         QuestionRepositoryInterface $questionRepository,
-        QuestionMessageInterfaceFactory $questionMessageFactory,
+        QuestionMessageInterfaceFactory $questionMessageFactory
     ) {
         $this->formKey = $formKey;
         $this->questionRepository = $questionRepository;

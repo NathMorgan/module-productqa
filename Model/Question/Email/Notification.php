@@ -38,7 +38,7 @@ class Notification
         BackendUrlInterface $backendUrl,
         TransportBuilder $transportBuilder,
         StoreManagerInterface $storeManager,
-        LoggerInterface $logger,
+        LoggerInterface $logger
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->backendUrl = $backendUrl;
