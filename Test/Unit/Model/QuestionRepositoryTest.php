@@ -6,16 +6,17 @@ namespace Bright\ProductQA\Test\Unit\Model;
 
 use Bright\ProductQA\Api\Data\QuestionInterface;
 use Bright\ProductQA\Api\Data\QuestionSearchResultsInterface;
-use Bright\ProductQA\Model\Question\Command\DeleteByIdInterface;
-use Bright\ProductQA\Model\Question\Command\GetInterface;
-use Bright\ProductQA\Model\Question\Command\GetListInterface;
-use Bright\ProductQA\Model\Question\Command\SaveInterface;
+use Bright\ProductQA\Model\Question\Command\DeleteById;
+use Bright\ProductQA\Model\Question\Command\Get;
+use Bright\ProductQA\Model\Question\Command\GetList;
+use Bright\ProductQA\Model\Question\Command\Save;
 use Bright\ProductQA\Model\QuestionRepository;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use Magento\Framework\Validation\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 class QuestionRepositoryTest extends TestCase
@@ -63,10 +64,10 @@ class QuestionRepositoryTest extends TestCase
     public function setUp(): void
     {
         $this->question = $this->getMockBuilder(QuestionInterface::class)->getMock();
-        $this->deleteByIdCommand = $this->getMockBuilder(DeleteByIdInterface::class)->getMock();
-        $this->getCommand = $this->getMockBuilder(GetInterface::class)->getMock();
-        $this->getListCommand = $this->getMockBuilder(GetListInterface::class)->getMock();
-        $this->saveCommand = $this->getMockBuilder(SaveInterface::class)->getMock();
+        $this->deleteByIdCommand = $this->getMockBuilder(DeleteById::class)->disableOriginalConstructor()->getMock();
+        $this->getCommand = $this->getMockBuilder(Get::class)->disableOriginalConstructor()->getMock();
+        $this->getListCommand = $this->getMockBuilder(GetList::class)->disableOriginalConstructor()->getMock();
+        $this->saveCommand = $this->getMockBuilder(Save::class)->disableOriginalConstructor()->getMock();
         $this->searchResults = $this->getMockBuilder(QuestionSearchResultsInterface::class)->getMock();
 
         $this->questionRepository = (new ObjectManager($this))->getObject(
@@ -239,6 +240,27 @@ class QuestionRepositoryTest extends TestCase
             ->willThrowException(
                 new CouldNotSaveException(
                     __('Could not save Question')
+                )
+            );
+
+        $this->questionRepository->save($this->question);
+    }
+
+    /**
+     * Test error call and return expected exception
+     */
+    public function testSaveWithValidationException()
+    {
+        $this->expectExceptionMessage('Validation Failed');
+        $this->expectException(ValidationException::class);
+
+        $this->saveCommand
+            ->expects($this->once())
+            ->method('execute')
+            ->with($this->question)
+            ->willThrowException(
+                new ValidationException(
+                    __('Validation Failed')
                 )
             );
 
