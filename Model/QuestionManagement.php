@@ -70,7 +70,7 @@ class QuestionManagement implements QuestionManagementInterface
             $questionMessage->setMessage(__(implode("\n", $validationErrorMessages)));
 
             return $questionMessage;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $questionMessage->setSuccess(false);
             $questionMessage->setMessage(__($e->getMessage()));
 
