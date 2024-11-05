@@ -248,6 +248,8 @@ To run Unit tests within this module:
 
 ---
 
+After the technical test is submitted I will still be working on this to improve the module over time
+
 * Supporting multiple store views to allow for the same product to have different QA messages depending on
 locale / region as the same product_id can be used on different stores. For now this can be dealt with translations on
 the output.
@@ -264,6 +266,19 @@ stating to need it and due to possible GDPR issues.
 
 
 * Remove the use of collection for the frontend however collections was used to keep the functionality of Magento pager support
+
+
+* Add the error / success message to be part of the form so the customer can see it easier and not at the top of the page
+
+
+* Moving the Product QA grid to be part of the actual product it's assigned to aid store owner in knowing what
+product the question is for
+
+
+* Adding more unit test classes for each PHP class
+
+
+* Improving the looks of the ProductQA admin grid to make it more visible that the question needs to be reviewed / answered
 
 ---
 
