@@ -2,7 +2,6 @@
 
 namespace Bright\ProductQA\Model\Question\Email;
 
-
 use Magento\Backend\Model\UrlInterface as BackendUrlInterface;
 use Magento\Framework\App\Area;
 use Magento\Framework\Mail\Template\TransportBuilder;

@@ -31,7 +31,7 @@ class GetList
         QuestionCollectionFactory $questionCollectionFactory,
         QuestionSearchResultsInterfaceFactory $questionSearchResultsFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
-    ) {
+    ){
         $this->collectionProcessor = $collectionProcessor;
         $this->questionCollectionFactory = $questionCollectionFactory;
         $this->questionSearchResultsFactory = $questionSearchResultsFactory;

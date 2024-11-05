@@ -37,7 +37,7 @@ class Save
         QuestionValidatorChain $questionValidator,
         EmailNotification $emailNotification,
         LoggerInterface $logger,
-    ) {
+    ){
         $this->questionResourceModel = $questionResourceModel;
         $this->questionValidator = $questionValidator;
         $this->emailNotification = $emailNotification;

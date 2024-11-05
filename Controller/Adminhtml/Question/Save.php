@@ -46,7 +46,7 @@ class Save extends Action implements HttpPostActionInterface
         DataObjectHelper $dataObjectHelper,
         QuestionInterfaceFactory $questionRepositoryFactory,
         QuestionRepositoryInterface $questionRepository,
-    ) {
+    ){
         parent::__construct($context);
         $this->dataObjectHelper = $dataObjectHelper;
         $this->questionRepositoryFactory = $questionRepositoryFactory;
@@ -115,7 +115,6 @@ class Save extends Action implements HttpPostActionInterface
 
         return $resultRedirect;
     }
-
 
     /**
      * Process result redirect after failed save.
