@@ -268,6 +268,9 @@ stating to need it and due to possible GDPR issues.
 * Remove the use of collection for the frontend however collections was used to keep the functionality of Magento pager support
 
 
+* Improving email sent out to the admin (Including data from the question)
+
+
 * Add the error / success message to be part of the form so the customer can see it easier and not at the top of the page
 
 
