@@ -11,7 +11,7 @@ class Config
     /** @var ScopeConfigInterface */
     protected $scopeConfig;
 
-    protected const string XML_PATH_PRODUCTQA_ADMIN_NOTIFICATION_EMAIL = 'productqa/general/admin_notification_email';
+    protected const XML_PATH_PRODUCTQA_ADMIN_NOTIFICATION_EMAIL = 'productqa/general/admin_notification_email';
 
     /**
      * @param ScopeConfigInterface $scopeConfig
