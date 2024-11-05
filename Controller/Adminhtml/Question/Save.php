@@ -46,7 +46,7 @@ class Save extends Action implements HttpPostActionInterface
         DataObjectHelper $dataObjectHelper,
         QuestionInterfaceFactory $questionRepositoryFactory,
         QuestionRepositoryInterface $questionRepository,
-    ){
+    ) {
         parent::__construct($context);
         $this->dataObjectHelper = $dataObjectHelper;
         $this->questionRepositoryFactory = $questionRepositoryFactory;

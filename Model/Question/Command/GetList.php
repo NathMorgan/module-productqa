@@ -15,16 +15,16 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 class GetList
 {
     /** @var CollectionProcessorInterface */
-    protected CollectionProcessorInterface $collectionProcessor;
+    protected $collectionProcessor;
 
     /** @var QuestionCollectionFactory */
-    protected QuestionCollectionFactory $questionCollectionFactory;
+    protected $questionCollectionFactory;
 
     /** @var QuestionSearchResultsInterfaceFactory $questionSearchResultsFactory */
-    protected QuestionSearchResultsInterfaceFactory $questionSearchResultsFactory;
+    protected $questionSearchResultsFactory;
 
     /** @var SearchCriteriaBuilder $searchCriteriaBuilder */
-    protected SearchCriteriaBuilder $searchCriteriaBuilder;
+    protected $searchCriteriaBuilder;
 
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,

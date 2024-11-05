@@ -13,16 +13,16 @@ use Bright\ProductQA\Api\QuestionRepositoryInterface;
 class QuestionRepository implements QuestionRepositoryInterface
 {
     /** @var DeleteById */
-    protected DeleteById $deleteById;
+    protected $deleteById;
 
     /** @var Get */
-    protected Get $get;
+    protected $get;
 
     /** @var GetList */
-    protected GetList $getList;
+    protected $getList;
 
     /** @var Save */
-    protected Save $save;
+    protected $save;
 
     public function __construct(
         DeleteById $deleteById,

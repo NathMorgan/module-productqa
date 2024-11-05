@@ -15,7 +15,7 @@ use Magento\Framework\Validation\ValidationException;
 class QuestionManagement implements QuestionManagementInterface
 {
     /** @var FormKey  */
-    protected FormKey $formKey;
+    protected $formKey;
 
     /** @var QuestionRepositoryInterface */
     protected $questionRepository;

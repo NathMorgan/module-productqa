@@ -12,10 +12,10 @@ use Bright\ProductQA\Api\Data\QuestionInterfaceFactory;
 class Get
 {
     /** @var QuestionResourceModel */
-    protected QuestionResourceModel $questionResourceModel;
+    protected $questionResourceModel;
 
     /** @var QuestionInterfaceFactory */
-    protected QuestionInterfaceFactory $questionInterfaceFactory;
+    protected $questionInterfaceFactory;
 
     /**
      * @param QuestionResourceModel $questionResourceModel
