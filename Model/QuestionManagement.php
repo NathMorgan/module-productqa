@@ -57,7 +57,7 @@ class QuestionManagement implements QuestionManagementInterface
         try {
             // Prevent this from being an update
             $question->setEntityId(null);
-            $this->questionRepository->save($question);
+            $this->questionRepository->save($question, true);
         } catch (ValidationException $e) {
             $validationExceptions = $e->getErrors();
             $validationErrorMessages = [];
