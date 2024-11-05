@@ -52,13 +52,13 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
                 <input type="hidden" id="product_id" name="product_id" value="<?= $escaper->escapeHtmlAttr($product->getId())?>" />
                 <fieldset>
                     <div>
-                        <div class="flex flex-col sm:flex-row">
+                        <div class="flex flex-col sm:flex-row gap-2">
                             <div class="flex-1">
                                 <label for="customer_name_field" class="sr-only">
                                     <span><?= $escaper->escapeHtml(__('Nickname')) ?></span>
                                 </label>
                                 <div>
-                                    <input class="form-input mt-3 block w-full text-sm"
+                                    <input class="form-input block w-full text-sm"
                                            required
                                            placeholder="<?= $escaper->escapeHtmlAttr(__('Nickname') . '*') ?>"
                                            type="text"
@@ -71,7 +71,7 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
                                     <span><?= $escaper->escapeHtml(__('Email')) ?></span>
                                 </label>
                                 <div>
-                                    <input class="form-input mt-3 block w-full text-sm"
+                                    <input class="form-input block w-full text-sm"
                                            required
                                            placeholder="<?= $escaper->escapeHtml(__('Email') . '*') ?>"
                                            type="email"
@@ -96,8 +96,10 @@ $recaptchaViewModel = $viewModels->require(ReCaptcha::class);
                     </div>
                 </fieldset>
 
-                <?php /** ReCaptcha blocks for each supported version */ ?>
-                <?= /** @noEscape */ $recaptchaViewModel->getInputHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
+                <div class="py-3">
+                    <?php /** ReCaptcha blocks for each supported version */ ?>
+                    <?= /** @noEscape */ $recaptchaViewModel->getInputHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
+                </div>
 
                 <div class="w-full grecaptcha-legal">
                     <?= /** @noEscape */ $recaptchaViewModel->getLegalNoticeHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
