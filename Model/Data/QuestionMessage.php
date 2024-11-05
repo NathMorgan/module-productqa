@@ -13,7 +13,7 @@ class QuestionMessage implements QuestionMessageInterface
     private $message;
 
     /** @var bool */
-    private bool $success;
+    private $success;
 
     /**
      * @inheritDoc
