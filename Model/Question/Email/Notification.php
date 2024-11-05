@@ -2,9 +2,11 @@
 
 namespace Bright\ProductQA\Model\Question\Email;
 
+use Magento\Backend\App\Area\FrontNameResolver;
 use Magento\Backend\Model\UrlInterface as BackendUrlInterface;
-use Magento\Framework\App\Area;
+use Magento\Email\Model\BackendTemplate;
 use Magento\Framework\Mail\Template\TransportBuilder;
+use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use Bright\ProductQA\Scope\Config as ScopeConfig;
 use Psr\Log\LoggerInterface;
@@ -56,19 +58,19 @@ class Notification
     public function questionSubmittedAdmin(): void
     {
         try {
-            $storeId = $this->storeManager->getStore()->getId();
-
             $transport = $this->transportBuilder
                 ->setTemplateIdentifier('admin_productqa_notification_email_template')
+                ->setTemplateModel(BackendTemplate::class)
+                ->setTemplateVars([])
                 ->setTemplateOptions(
                     [
-                        'area' => Area::AREA_ADMINHTML,
-                        'store' => $storeId
+                        'area' => FrontNameResolver::AREA_CODE,
+                        'store' => Store::DEFAULT_STORE_ID
                     ]
                 )
-                ->setTemplateVars([])
                 ->setFromByScope(
-                    $this->scopeConfig->getAdminNotificationEmail()
+                    ['name' => 'Store Administrator', 'email' => $this->scopeConfig->getAdminNotificationEmail()],
+                    Store::DEFAULT_STORE_ID
                 )
                 ->addTo(
                     $this->scopeConfig->getAdminNotificationEmail()
