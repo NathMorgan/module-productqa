@@ -30,7 +30,7 @@ if ($toolbar = $block->getChildBlock('product.qa.list.toolbar')) {
             @click="openQuestion = !openQuestion"
             class="filter-options-title flex justify-between items-center cursor-pointer text-start hover:text-secondary-darker border-container w-full"
             :class="{ 'border-b pb-4': openQuestion }"
-            :aria-expanded="open"
+            :aria-expanded="openQuestion"
         >
             <span @click="openQuestion = !openQuestion" class="text-lg my-2">
                 <h3 class="text-xl font-medium text-gray-900 title-font"><?= $escaper->escapeHtml(__($question->getQuestion())) ?></h3>
