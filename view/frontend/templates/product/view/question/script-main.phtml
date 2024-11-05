@@ -1,0 +1,81 @@
+<?php
+
+use Hyva\Theme\ViewModel\ReCaptcha;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Bright\ProductQA\ViewModel\Product\View\QuestionViewModel;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+use Bright\ProductQA\Model\Question;
+
+/** @var QuestionViewModel $questionViewModel */
+/** @var ViewModelRegistry $viewModels */
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ReCaptcha $recaptchaViewModel */
+
+$questionViewModel = $viewModels->require(QuestionViewModel::class);
+$recaptchaViewModel = $viewModels->require(ReCaptcha::class);
+?>
+<script>
+    function initQuestion() {
+        return {
+            isLoading: false,
+
+            submitForm: function () {
+                // Do not rename $form, the variable is expected to be declared in the recaptcha output
+                const $form = document.querySelector('#question-form');
+
+                <?= /** @noEscape */ $recaptchaViewModel->getValidationJsHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
+
+                if (this.errors === 0) {
+                    this.dispatchCreateQuestion($form);
+                }
+            },
+
+            dispatchCreateQuestion(form) {
+                this.isLoading = true;
+
+                const formKey = hyva.getFormKey(),
+                    customerName = document.getElementById('customer_name_field').value,
+                    customerEmail = document.getElementById('customer_email_field').value,
+                    question = document.getElementById('qustion_field').value,
+                    productId = document.getElementById('product_id').value;
+
+                const fieldName = '<?= $escaper->escapeJs($recaptchaViewModel->getResultTokenFieldName('#question-form')) ?>';
+                const recaptchaHeader = fieldName && form && form.elements[fieldName]
+                    ? {'X-ReCaptcha': form.elements[fieldName].value}
+                    : {};
+
+                const body = {
+                    'question': {
+                        'customer_name': customerName,
+                        'customer_email': customerEmail,
+                        'question': question,
+                        'product_id': productId,
+                    },
+                    'form_key': formKey,
+                };
+
+                fetch('rest/V1/productqa/create-question', {
+                    method: 'PUT',
+                    headers: Object.assign({
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }, recaptchaHeader),
+                    body: JSON.stringify(body),
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        this.isLoading = false;
+
+                        if (result.message.length) {
+                            return dispatchMessages([{
+                                text: result.message,
+                                type: result.success ? 'success' : 'error'
+                            }]);
+                        }
+                    })
+            },
+        }
+    }
+</script>

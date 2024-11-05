@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product.qa.wrapper"
+                   template="Bright_ProductQA::product/view/question-wrapper.phtml"
+                   after="product.detail.page">
+                <block name="loading" template="Hyva_Theme::ui/loading.phtml"/>
+                <block name="product.qa.list"
+                       template="Bright_ProductQA::product/view/question/list.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="product.qa.list.toolbar">
+                        <arguments>
+                            <argument name="pagination_url_anchor" xsi:type="string">question-list</argument>
+                        </arguments>
+                    </block>
+                </block>
+                <block name="product.qa.form"
+                       template="Bright_ProductQA::product/view/question/form.phtml" />
+                <block name="product.qa.script"
+                       template="Bright_ProductQA::product/view/question/script-main.phtml" />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

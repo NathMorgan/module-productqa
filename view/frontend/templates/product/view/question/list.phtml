@@ -1,0 +1,62 @@
+<?php
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Catalog\Block\Product\View as ProductView;
+use Bright\ProductQA\Model\Question;
+use Bright\ProductQA\ViewModel\Product\View\QuestionViewModel;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+
+/** @var ProductView $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/** @var QuestionViewModel $questionViewModel */
+/** @var HeroiconsOutline $heroiconsViewModel */
+
+$questionViewModel = $viewModels->require(QuestionViewModel::class);
+$heroiconsViewModel = $viewModels->require(HeroiconsOutline::class);
+$questionsCollection = $questionViewModel->getAllQuestionsByProductIdCollection($block->getProduct()->getId());
+
+if ($toolbar = $block->getChildBlock('product.qa.list.toolbar')) {
+    $toolbar->setCollection($questionsCollection);
+}
+
+?>
+<?php /** @var Question $question */ ?>
+<?php foreach ($questionsCollection as $question): ?>
+    <div x-data="{openQuestion: false}" class="card border-b pb-4 my-4 border-container last:border-0 last:mb-0">
+        <button
+            type="button"
+            @click="openQuestion = !openQuestion"
+            class="filter-options-title flex justify-between items-center cursor-pointer text-start hover:text-secondary-darker border-container w-full"
+            :class="{ 'border-b pb-4': openQuestion }"
+            :aria-expanded="open"
+        >
+            <span @click="openQuestion = !openQuestion" class="text-lg my-2">
+                <h3 class="text-xl font-medium text-gray-900 title-font"><?= $escaper->escapeHtml(__($question->getQuestion())) ?></h3>
+            </span>
+            <span class="py-1 px-1 rounded border border-container">
+                <?= $heroiconsViewModel->chevronDownHtml(
+                    'transition-transform transform duration-300 ease-in-out',
+                    24,
+                    24,
+                    [
+                        ":class" => "{ 'rotate-180': openQuestion }",
+                        "aria-hidden" => "true",
+                        "focusable" => "false"
+                    ]
+                ); ?>
+            </span>
+        </button>
+        <template x-if="openQuestion">
+            <div class="pt-6 pb-3">
+                <?= $escaper->escapeHtml($question->getAnswer()) ?>
+            </div>
+        </template>
+    </div>
+<?php endforeach; ?>
+<?php if ($toolbar): ?>
+    <div class="toolbar question-toolbar mt-4">
+        <?= $toolbar->toHtml() ?>
+    </div>
+<?php endif; ?>

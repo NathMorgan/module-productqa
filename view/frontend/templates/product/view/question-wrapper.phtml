@@ -1,0 +1,30 @@
+<?php
+
+use Magento\Framework\Escaper;
+use Magento\Catalog\Block\Product\View as ProductView;
+
+/** @var ProductView $block */
+/** @var Escaper $escaper */
+?>
+<div x-data="initQuestion()"
+     class="mx-auto py-6 items-center"
+     id="question-list"
+     aria-label="<?= $escaper->escapeHtmlAttr(__('Product Question & Answers')) ?>"
+     tabindex="-1"
+     role="group">
+    <?= $block->getChildHtml('loading') ?>
+    <div class="container mx-auto flex pt-6 pb-3 mb-6 md:flex-row border-b-2 border-gray-300">
+        <h2 class="text-gray-900 text-2xl title-font font-base text-center md:text-left w-full">
+            <?= $escaper->escapeHtml(__('Product Question & Answers')) ?>
+        </h2>
+    </div>
+    <div class="w-full">
+        <?php if ($productQaListBlock = $block->getChildBlock('product.qa.list')): ?>
+            <?= $productQaListBlock->setData('product', $block->getProduct())->toHtml() ?>
+        <?php endif; ?>
+        <?php if ($productQaListBlock = $block->getChildBlock('product.qa.form')): ?>
+            <?= $productQaListBlock->setData('product', $block->getProduct())->toHtml() ?>
+        <?php endif; ?>
+    </div>
+</div>
+<?= $block->getChildHtml('product.qa.script') ?>

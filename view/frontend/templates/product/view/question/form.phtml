@@ -1,0 +1,92 @@
+<?php
+
+use Hyva\Theme\ViewModel\ReCaptcha;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Catalog\Block\Product\View as ProductView;
+use Bright\ProductQA\ViewModel\Product\View\QuestionViewModel;
+use Bright\ProductQA\Model\Question;
+
+/** @var ProductView $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/** @var QuestionViewModel $questionViewModel */
+/** @var ReCaptcha $recaptchaViewModel */
+
+$product = $block->getProduct();
+$recaptchaViewModel = $viewModels->require(ReCaptcha::class);
+?>
+<div class="mx-auto py-6 items-center" id="review-form" tabindex="-1">
+    <div class="card w-full px-6 py-3">
+        <div class="text-xl my-3">
+            <?= $escaper->escapeHtml(__('Submit a Question')) ?>
+        </div>
+        <form @submit.prevent="submitForm();"
+              method="post"
+              class="question-form"
+              id="question-form">
+            <input type="hidden" id="product_id" name="product_id" value="<?= $escaper->escapeHtmlAttr($product->getId())?>" />
+            <fieldset>
+                <div>
+                    <div class="flex flex-col sm:flex-row">
+                        <div class="flex-1">
+                            <label for="customer_name_field" class="sr-only">
+                                <span><?= $escaper->escapeHtml(__('Nickname')) ?></span>
+                            </label>
+                            <div>
+                                <input class="form-input mt-3 block w-full text-sm"
+                                       required
+                                       placeholder="<?= $escaper->escapeHtmlAttr(__('Nickname') . '*') ?>"
+                                       type="text"
+                                       name="customer_name"
+                                       id="customer_name_field"/>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label for="customer_email_field" class="sr-only">
+                                <span><?= $escaper->escapeHtml(__('Email')) ?></span>
+                            </label>
+                            <div>
+                                <input class="form-input mt-3 block w-full text-sm"
+                                       required
+                                       placeholder="<?= $escaper->escapeHtml(__('Email') . '*') ?>"
+                                       type="email"
+                                       name="customer_email"
+                                       id="customer_email_field"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="qustion_field" class="sr-only">
+                            <span><?= $escaper->escapeHtml(__('Qustion')) ?></span>
+                        </label>
+                        <div>
+                            <input class="form-input mt-3 block w-full text-sm"
+                                   required
+                                   placeholder="<?= $escaper->escapeHtml(__('Question') . '*') ?>"
+                                   type="text"
+                                   name="question"
+                                   id="qustion_field"/>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <?php /** ReCaptcha blocks for each supported version */ ?>
+            <?= /** @noEscape */ $recaptchaViewModel->getInputHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
+
+            <div class="w-full grecaptcha-legal">
+                <?= /** @noEscape */ $recaptchaViewModel->getLegalNoticeHtml(Question::PRODUCT_QA_CAPTCHA_ID) ?>
+            </div>
+            <div class="my-3">
+                <div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>
+                            <?= $escaper->escapeHtml(__('Submit Question')) ?>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
